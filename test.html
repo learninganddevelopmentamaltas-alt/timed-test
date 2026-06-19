@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timed Test</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin: 20px;
+    }
+
+    #timer {
+      font-size: 30px;
+      color: red;
+      font-weight: bold;
+    }
+
+    #form-container {
+      margin-top: 20px;
+    }
+
+    #expired {
+      display: none;
+      font-size: 24px;
+      color: red;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>Employee Assessment Test</h2>
+
+<div id="timer">15:00</div>
+
+<div id="form-container">
+
+  <!-- PASTE YOUR GOOGLE FORM IFRAME BELOW -->
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfx-zo39574I0xIy9VKe7Z9d7zyipgQre10SWRAKI56c7ZkuA/viewform?usp=header"
+          width="800"
+          height="600">
+  </iframe>
+
+</div>
+
+<div id="expired">
+  ⛔ Time is up! The test has ended.
+</div>
+
+<script>
+  let time = 15 * 60; // 15 minutes in seconds
+
+  let countdown = setInterval(function () {
+
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+
+    time--;
+
+    if (time < 0) {
+      clearInterval(countdown);
+
+      document.getElementById("form-container").style.display = "none";
+      document.getElementById("timer").style.display = "none";
+      document.getElementById("expired").style.display = "block";
+    }
+
+  }, 1000);
+</script>
+
+</body>
+</html>
